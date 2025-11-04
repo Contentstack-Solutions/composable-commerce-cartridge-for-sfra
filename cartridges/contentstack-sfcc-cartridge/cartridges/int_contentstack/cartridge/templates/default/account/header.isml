@@ -1,0 +1,40 @@
+<isif condition="${pdict.name === null}">
+    <isset name="login_label" value="${!empty(pdict.cmsHeader.header_resources.login_link_label) ? pdict.cmsHeader.header_resources.login_link_label : Resource
+                                     .msg('link.header.login', 'account', null)}" scope="page" />
+    <isset name="login_label_aria" value="${!empty(pdict.cmsHeader.header_resources.login_button_label) ? pdict.cmsHeader.header_resources.login_button_label :
+                                          Resource.msg('link.header.loginbutton', 'account', null)}" scope="page" />
+    <div class="user hidden-sm-down">
+        <a href="${URLUtils.https('Login-Show')}" role="button" aria-label="${login_label_aria}" title="${login_label}">
+            <iscomment> <i class="fa fa-sign-in" aria-hidden="true"></i> </iscomment>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span class="user-message d-none">${login_label}</span>
+        </a>
+    </div>
+<iselse/>
+    <isset name="myaccount_label" value="${!empty(pdict.cmsHeader.header_resources.my_account_label) ? pdict.cmsHeader.header_resources.my_account_label : Resource
+                                         .msg('link.header.myaccount', 'account', null)}" scope="page" />
+    <isset name="myorders_text" value="${!empty(pdict.cmsHeader.header_resources.my_orders_label) ? pdict.cmsHeader.header_resources.my_orders_label : Resource
+                                       .msg('label.myorders', 'account', null)}" scope="page" />
+    <isset name="logout_text" value="${!empty(pdict.cmsHeader.header_resources.logout_label) ? pdict.cmsHeader.header_resources.logout_label : Resource.msg(
+                                     'link.header.logout', 'account', null)}" scope="page" />
+    <div class="user hidden-sm-down nav-item" >
+    <div ${cmsUtils.cslp(pdict.cmsHeader.header_resources, 'login_link_label')}>
+        <a href="${'#'}" id="myaccount" aria-haspopup="true"
+            aria-label="${Resource.msg('link.header.myaccount', 'account', null)}" role="button">
+            <i class="fa fa-sign-in" aria-hidden="true"></i><span
+                class="user-message btn dropdown-toggle">${pdict.name}</span>
+        </a>
+        </div>
+        <div class="popover popover-bottom">
+            <ul class="nav" role="menu" aria-label="${Resource.msg('label.profile.myaccountlink', 'account', null)}"
+                aria-hidden="true">
+                <li class="nav-item" role="presentation"><a href="${URLUtils.https('Account-Show')}" role="menuitem"
+                        tabindex="0">${myaccount_label}</a></li>
+                <li class="nav-item" role="presentation"><a href="${URLUtils.url('Order-History')}" role="menuitem"
+                        tabindex="0">${myorders_text}</a></li>
+                <li class="nav-item" role="presentation"><a href="${URLUtils.url('Login-Logout')}" role="menuitem"
+                        tabindex="0">${logout_text}</a></li>
+            </ul>
+        </div>
+    </div>
+</isif>

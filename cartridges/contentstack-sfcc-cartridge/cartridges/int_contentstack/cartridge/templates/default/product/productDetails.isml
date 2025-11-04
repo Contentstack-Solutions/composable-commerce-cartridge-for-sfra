@@ -1,0 +1,66 @@
+<isdecorate template="common/layout/page">
+    <isset name="cmsData" value="${pdict.cmsData}" scope="page" />
+    <isset name="cmsUtils" value="${pdict.cmsUtils}" scope="page" />
+    <isset name="cmsHelper" value="${pdict.cmsHelper}" scope="page" />
+    <isset name="pdBlockExists" value="${false}" scope="page" />
+    <isset name="recommendationsBlockExists" value="${false}" scope="page" />    
+    
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets');
+        assets.addJs('/js/productDetail.js');
+        assets.addCss('/css/product/detail.css');
+    </isscript>
+    <isset name="cmsRecommendations" value="" scope="page" />
+    <isif condition="${cmsData && cmsData.components && cmsData.components.length > 0}">        
+        <isloop items="${cmsData.components}" var="element">
+            <isset name="blockId" value="${Object.keys(element)[0]}" scope="page" />
+            <isif condition="${blockId == 'recommended_products'}">
+                <isset name="cmsRecommendations" value="${element}" scope="page" />
+                <isset name="recommendationsBlockExists" value="${true}" scope="page" />
+            <iselseif condition="${blockId == 'default_product_details'}" />
+                <isset name="pdBlockExists" value="${true}" scope="page" />
+            </isif>
+        </isloop>
+    </isif>    
+    <isif condition="${cmsData && cmsData.components && cmsData.components.length > 0}">
+        <isif condition="${!pdBlockExists}">
+            <isinclude template="product/fallbackPDP" />
+        </isif>
+        <isif condition="${!recommendationsBlockExists}">
+            <isinclude template="product/components/recommendedProducts" />
+        </isif>
+        <isloop items="${cmsData.components}" var="element" status="elementStatus">
+            <isset name="blockId" value="${Object.keys(element)[0]}" scope="page" />
+            <isset name="block" value="${element[blockId]}" scope="page" />
+            <div ${cmsUtils.cslp(cmsData, 'components', elementStatus.index)}>
+                <isif condition="${blockId == 'banner'}">
+                    <isinclude template="content/components/banner/banner" />
+                <iselseif condition="${blockId == 'category_list'}" />
+                    <isinclude template="content/components/categoryTiles" />
+                <iselseif condition="${blockId == 'product_list'}" />
+                    <isinclude template="content/components/productList" />
+                <iselseif condition="${blockId == 'newsletter'}" />
+                    <isinclude template="content/components/emailSignup" />
+                <iselseif condition="${blockId == 'general_content'}" />
+                    <isinclude template="content/components/generalContent" />
+                <iselseif condition="${blockId == 'default_product_details'}" />
+                    <isif condition="${block.overwrite}">
+                        <isset name="block" value="${block.overwrite_product_details}" scope="page" />
+                        <isinclude template="product/components/defaultProductDetails" />
+                    <iselse/>
+                        <isinclude template="product/fallbackPDP" />
+                    </isif>
+                <iselseif condition="${blockId == 'recommended_products'}" />
+                    <isinclude template="product/components/recommendedProducts" />
+                <iselseif condition="${blockId == 'tile_list'}" />
+                    <isinclude template="content/components/non-sfcc/tileList" />
+                <iselseif condition="${blockId == 'card_list'}" />
+                    <isinclude template="content/components/non-sfcc/cardList" />
+                </isif>
+            </div>
+        </isloop>
+    <iselse/>
+        <isinclude template="product/fallbackPDP" />
+    </isif>
+
+</isdecorate>

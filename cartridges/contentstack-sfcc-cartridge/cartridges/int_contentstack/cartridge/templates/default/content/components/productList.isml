@@ -1,0 +1,24 @@
+<isscript>
+         assets.addJs('/js/productTile.js');
+</isscript>
+<isset name="higlightRendered" value="${false}" scope="page"/>
+<isset name="higlightPosition" value="${block.position != null ? (block.position > 0 ? block.position : 1 ) : block.position}" scope="page"/>
+
+<div class="container home-product-tiles homepage">
+    <div class="hp-product-grid" itemtype="http://schema.org/SomeProducts" itemid="#product">
+        <div class="homepage-product-listing row" ${cmsUtils.cslp(block, 'products')}>
+            <isloop items="${block.products.data}" var="product" status="loopState">
+                <isif condition="${(loopState.count == higlightPosition)}">                    
+                    <isinclude template="content/components/highlighted"/>
+                    <isset name="higlightRendered" value="${true}" scope="page"/>
+                </isif>
+                <div class="col-6 col-sm-4" >
+                    <isinclude url="${URLUtils.url('Tile-Show', 'pid', product.id, 'pview', 'tile', 'ratings', true, 'swatches', true)}"/>
+                </div>
+            </isloop>        
+            <isif condition="${!higlightRendered && block.position >= block.products.data.length}">
+                <isinclude template="content/components/highlighted"/>
+            </isif>
+        </div>
+    </div>
+</div>

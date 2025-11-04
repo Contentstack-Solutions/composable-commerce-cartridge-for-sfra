@@ -1,0 +1,120 @@
+<isset name="product" value="${pdict.product}" scope="page" />
+<isset name="isQuickView" value="${false}" scope="page" />
+<isset name="isProductSet" value="${pdict.product.productType === 'set'}" scope="page" />
+<isobject object="${product.raw}" view="detail">
+    <div class="container product-detail product-wrapper" data-pid="${product.id}">
+        <div class="row">
+            <div class="col-12">
+                <!--Breadcrumbs-->
+                <!-- Product Name -->
+                <div class="row">
+                    <div class="d-md-none col-sm-12">
+                        <h1 class="product-name" ${cmsUtils.cslp(block, 'product_name')}>${block.product_name ? block.product_name : product.productName}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Product Images Carousel -->
+            <isif condition="${block.product_images.length > 0}">
+                <isinclude template="product/components/cms/imageCarousel" />
+            <iselse/>
+                <isinclude template="product/components/imageCarousel" />
+            </isif>
+
+            <div class="col-12 col-md-8">
+                <!--Breadcrumbs-->
+                <!-- Product Name -->
+                <div class="row">
+                    <div class="col">
+                        <h1 class="product-name hidden-sm-down" ${cmsUtils.cslp(block, 'product_name')}>
+                            ${block.product_name ? block.product_name : product.productName}</h1>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <isinclude template="product/components/pidRating" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="product-number pull-left">
+                            <isinclude template="product/components/productNumber" />
+                        </div>
+                    </div>
+                </div>
+                <isinclude template="product/components/productAvailability" />
+                <div class="attributes">
+                    <!-- Attributes and Quantity -->
+                    <isinclude template="product/components/mainAttributes" />
+
+                    <isset name="isBundle" value="${false}" scope="page" />
+                    <isset name="loopState" value="${{
+                                                   count: 1}}" scope="page" />
+                    <isloop items="${product.variationAttributes}" var="attr" status="attributeStatus">
+                        <div class="row" data-attr="${attr.id}">
+                            <div class="col-8">
+                                <isinclude template="product/components/variationAttribute" />
+                            </div>
+
+                            <isif condition="${attributeStatus.last && !isBundle}">
+                                <!-- Quantity Drop Down Menu -->
+                                <div class="attribute quantity col-4">
+                                    <isinclude template="product/components/quantity" />
+                                </div>
+                            </isif>
+                        </div>
+                    </isloop>
+
+                    <isif condition="${!product.variationAttributes}">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="simple-quantity">
+                                    <isinclude template="product/components/quantity" />
+                                </div>
+                            </div>
+                        </div>
+                    </isif>
+
+                    <div class="product-options">
+                        <isif condition="${product.options && product.options.length > 0}">
+                            <isinclude template="product/components/options" />
+                        </isif>
+                    </div>
+
+                    <!-- Size Chart -->
+                    <isif condition="${product.variationAttributes && product.sizeChartId}">
+                        <div class="row">
+                            <div class="size-chart col-12">
+                                <isinclude template="product/components/sizeChart" />
+                            </div>
+                        </div>
+                    </isif>
+
+                    <!-- Product Availability -->
+                    
+
+                    <!-- Applicable Promotions -->
+                   
+
+                    <div class="prices-add-to-cart-actions">
+                       
+
+                        <!-- Cart and [Optionally] Apple Pay -->
+                        <isinclude template="product/components/addToCartProduct" />
+                    </div>
+
+                    <!-- Social Sharing Icons -->
+                </div>
+            </div>
+        </div>
+
+        <isset name="loopState" value="${{
+                                       count: 1}}" scope="page" />
+        <isinclude template="product/components/descriptionAndDetails" />
+
+    </div>
+</isobject>

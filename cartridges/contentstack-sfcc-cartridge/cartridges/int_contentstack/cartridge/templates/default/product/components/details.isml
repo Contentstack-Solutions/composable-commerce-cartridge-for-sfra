@@ -1,0 +1,17 @@
+<isif condition="${empty(block)}">
+    <isset name="block" value="{}" scope="page" />
+</isif>
+<isif condition="${block && block.product_details && !cmsUtils.isJsonRteEmpty(block.product_details)}">
+    <div class="col-sm-12 col-md-8 col-lg-9 value content"
+        id="collapsible-details-${loopState && loopState.count ? loopState.count : '1'}"
+        ${cmsUtils.cslp(block, 'product_details')}>
+        <isprint value="${cmsHelper.rteToHtml(block.product_details)}" encoding="off" />
+    </div>
+<iselse/>
+    <isif condition="${product.longDescription}">
+        <div class="col-sm-12 col-md-8 col-lg-9 value content" ${block?cmsUtils.cslp(block, 'product_details'):''}
+            id="collapsible-details-${loopState && loopState.count ? loopState.count : '1'}">
+            <isprint value="${product.longDescription}" encoding="off" />
+        </div>
+    </isif>
+</isif>

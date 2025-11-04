@@ -1,0 +1,16 @@
+<isif condition="${pdict.localeModel.locale.localeLinks.length > 0}">
+    <li class="menu-item dropdown country-selector d-md-none" data-url="${URLUtils.url('Page-SetLocale')}">
+        <span class="btn dropdown-toggle" id="dropdownCountrySelector" data-toggle="dropdown" aria-haspopup="true">
+             <i class="fa fa-globe"></i>
+            ${pdict.localeModel.locale.displayLanguage}
+        </span>
+        <div class="dropdown-menu dropdown-country-selector" aria-labelledby="dropdownCountrySelector">
+            <isloop items="${pdict.localeModel.locale.localeLinks}" var="localeLink">
+                <a class="dropdown-item" href="${'#'}" data-locale="${localeLink.localID}" data-currencyCode="${localeLink.currencyCode}" >
+                    <i class="fi fi-${localeLink.country.toLowerCase()}"></i>
+                   ${pdict.localeModel.locale.displayLanguage}
+                </a>
+            </isloop>
+        </div>
+    </li>
+</isif>

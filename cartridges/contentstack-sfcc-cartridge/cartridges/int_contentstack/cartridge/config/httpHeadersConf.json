@@ -1,0 +1,30 @@
+[
+    {
+        "id": "Content-Security-Policy",
+        "value": "frame-ancestors 'self' https://*.contentstack.com"
+    },
+    {
+        "id": "X-Content-Type-Options",
+        "value": "nosniff"
+    },
+    {
+        "id": "Access-Control-Allow-Credentials",
+        "value": "true"
+    },
+    {
+        "id": "Access-Control-Allow-Headers",
+        "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+    },
+    {
+        "id": "Referrer-Policy",
+        "value": "strict-origin-when-cross-origin"
+    },
+    {
+        "id": "X-FRAME-OPTIONS",
+        "value": "SAMEORIGIN"
+    },
+    {
+        "id": "X-XSS-Protection",
+        "value": "1; mode=block"
+    }
+]

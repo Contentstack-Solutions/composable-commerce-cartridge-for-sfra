@@ -1,0 +1,15 @@
+<div class="card col-6 col-sm-4 hp-product-content" ${cmsUtils.cslp(block, 'cta')}>
+    <div class="card-body">
+        <isif condition="${block.cta && block.cta.link && !empty(block.cta.link.href)}">
+            <isset name="linkTarget" value="${block.cta && block.cta.open_in_new_window ? '_blank' : '_self'}" scope="page" />
+            <a href="${block.cta.link.href}" title="${block.cta.link.title}" target="${linkTarget}">
+                <span class="largeText" ${cmsUtils.cslp(block, 'title')}>${block.title}</span>
+                <iscomment>Subtitle isn't available in data model.
+                <br /><span ${cmsUtils.cslp(block, 'subtitle')}>${block.subtitle}</span>
+                </iscomment>
+            </a>
+        <iselse/>
+            <h1 class="largeText" ${cmsUtils.cslp(block, 'title')}>${block.title}</h1>
+        </isif>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"); /* stylelint-disable-line import-notation */
+@import "~base/variables";
+@import "~base/skin/skinVariables";
+@import "~base/bootstrap-custom-import";
+@import "~base/bootstrapOverrides";
+@import "~base/utilities/responsiveUtils";
+@import "font-awesome/scss/font-awesome";
+@import "flag-icons/sass/flag-icons";
+@import "~base/components/common";
+@import "~base/components/header";
+@import "~base/components/footer";
+@import "~base/components/hero";
+@import "~base/components/headers";
+@import "~base/components/notification";
+
+@import "~base/components/pricing";
+@import "~base/components/productTiles";
+@import "~base/components/tabs";
+@import "~base/components/breadcrumb";
+@import "~base/components/spinner";
+@import "~base/miniCart";
+@import "~base/components/tooltip";
+@import "~base/components/headerSearch";
+
+@import "main-cs";
+
+#cslp-tooltip {
+    z-index: 1200 !important;
+}

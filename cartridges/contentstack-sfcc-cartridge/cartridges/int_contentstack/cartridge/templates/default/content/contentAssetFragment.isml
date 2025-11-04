@@ -1,0 +1,8 @@
+<isset name="cmsData" value="${pdict.cmsData}" scope="page" />
+<isset name="cmsHelper" value="${pdict.cmsHelper}" scope="page" />
+<isset name="cmsUtils" value="${pdict.cmsUtils}" scope="page" />
+<isif condition="${cmsData}">
+    <isinclude template="pages/global-modular-blocks" />
+<iselse>
+    <isprint value="${pdict.content.body}" encoding="off" />
+</isif>

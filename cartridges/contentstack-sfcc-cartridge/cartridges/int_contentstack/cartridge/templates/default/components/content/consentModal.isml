@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header" ${pdict.content.title_cslp}>${pdict.content.title}</div>
+        <div class="modal-body" ${pdict.content.body_cslp}>
+            <isprint value="${pdict.content.body}" encoding="off" />
+        </div>
+        <div class="modal-footer">
+            <div class="button-wrapper">
+                <button class="affirm btn btn-primary" data-url="${URLUtils.url('ConsentTracking-SetConsent', 'consent', 'true')}" autofocus data-dismiss="modal" ${pdict.content.accept_cslp}>
+                    ${pdict.content.accept}
+                </button>
+                <button class="decline btn btn-primary" data-url="${URLUtils.url('ConsentTracking-SetConsent', 'consent', 'false')}" data-dismiss="modal" ${pdict.content.decline_cslp}>
+                    ${pdict.content.decline}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

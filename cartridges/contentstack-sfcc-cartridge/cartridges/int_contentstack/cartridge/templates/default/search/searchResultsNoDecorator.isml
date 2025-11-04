@@ -1,0 +1,57 @@
+<isset name="cmsData" value="${pdict.cmsData}" scope="page" />
+<isset name="cmsUtils" value="${pdict.cmsUtils}" scope="page" />
+<isset name="cmsHelper" value="${pdict.cmsHelper}" scope="page" />
+<isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
+    <isinclude template="reporting/reportingUrls" />
+</isif>
+
+<isif condition="${pdict.cmsData.banner && !empty(pdict.cmsData.banner.title)}">
+    <isset name="bannerTitle" value="${pdict.cmsData.banner.title}" scope="page" />
+<iselse/>
+    <isset name="bannerTitle" value="${pdict.productSearch.category.name}" scope="page" />
+</isif>
+<isif condition="${pdict.cmsData.banner && !empty(pdict.cmsData.banner.image.url)}">
+    <isset name="bannerImageUrl" value="${pdict.cmsData.banner.image.url}" scope="page" />
+<iselse/>
+    <isset name="bannerImageUrl" value="${pdict.productSearch.bannerImageUrl}" scope="page" />
+</isif>
+<!--- Search Results Banner --->
+<isif condition="${pdict.productSearch.isCategorySearch}">
+    <div class="hero slant-down search-banner" style="background-image: url(${bannerImageUrl});" ${cmsUtils.cslp(pdict.cmsData.banner, 'image')}>
+        <h1 class="header page-title" ${cmsUtils.cslp(pdict.cmsData.banner, 'title')}>
+            ${bannerTitle}
+        </h1>
+    </div>
+<iselse/>
+    <isslot id="search-result-banner-m" description="Banner for search results" context="global" />
+</isif>
+
+<isif condition="${cmsData && cmsData.components && cmsData.components.length > 0}">
+    <isloop items="${cmsData.components}" var="element" status="elementStatus">
+        <isset name="blockId" value="${Object.keys(element)[0]}" scope="page" />
+        <isset name="block" value="${element[blockId]}" scope="page" />
+        <div ${cmsUtils.cslp(cmsData, 'components', elementStatus.index)}>
+            <isif condition="${blockId == 'banner'}">
+                <isinclude template="content/components/banner/banner" />
+            <iselseif condition="${blockId == 'category_list'}" />
+                <isinclude template="content/components/categoryTiles" />
+            <iselseif condition="${blockId == 'product_list'}" />
+                <isinclude template="content/components/productList" />
+            <iselseif condition="${blockId == 'newsletter'}" />
+                <isinclude template="content/components/emailSignup" />
+            <iselseif condition="${blockId == 'general_content'}" />
+                <isinclude template="content/components/generalContent" />
+            <iselseif condition="${blockId == 'product_results'}" />
+                <isinclude template="search/fallbackPLP" />
+            <iselseif condition="${blockId == 'recommended_products'}" />
+                <isinclude template="product/components/recommendedProducts" />
+            <iselseif condition="${blockId == 'tile_list'}" />
+                <isinclude template="content/components/non-sfcc/tileList" />
+            <iselseif condition="${blockId == 'card_list'}" />
+                <isinclude template="content/components/non-sfcc/cardList" />
+            </isif>
+        </div>
+    </isloop>
+<iselse/>
+    <isinclude template="search/fallbackPLP" />
+</isif>
