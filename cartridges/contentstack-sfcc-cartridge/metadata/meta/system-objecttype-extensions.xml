@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+
+    <type-extension type-id="SitePreferences">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="cmsAccessToken">
+                <display-name xml:lang="x-default">CMS Access Token</display-name>
+                <type>password</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsApiEndpoint">
+                <display-name xml:lang="x-default">CMS API Endpoint (CDN Url)</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsApiKey">
+                <display-name xml:lang="x-default">CMS API Key</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsBranch">
+                <display-name xml:lang="x-default">CSM Branch</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsEnvironment">
+                <display-name xml:lang="x-default">CMS Environment</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsPersonalizeEndpoint">
+                <display-name xml:lang="x-default">CMS Personalize Edge API Endpoint</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsPersonalizeProjectUID">
+                <display-name xml:lang="x-default">CMS Personalize Project UID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsPreviewApiEndpoint">
+                <display-name xml:lang="x-default">CMS Preview Endpoint (Live Preview Rest Service URL)</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsPreviewToken">
+                <display-name xml:lang="x-default">CMS Preview Token</display-name>
+                <type>password</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsEdgeApiEndpoint">
+                <display-name xml:lang="x-default">Personalize Edge Endpoint (Host)</display-name>
+                <type>password</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="livePreviewUtilsURL">
+                <display-name xml:lang="x-default">Live Preview Library URL</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="cmsEnableLivePreview">
+                <display-name xml:lang="x-default">Enable Live Preview</display-name>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>true</default-value>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="cmsConfiguration">
+                <display-name xml:lang="x-default">CMS Configuration</display-name>
+                <attribute attribute-id="cmsEnableLivePreview"/>
+                <attribute attribute-id="cmsApiKey"/>
+                <attribute attribute-id="cmsAccessToken"/>
+                <attribute attribute-id="cmsEnvironment"/>
+                <attribute attribute-id="cmsApiEndpoint"/>
+                <attribute attribute-id="cmsPreviewApiEndpoint"/>
+                <attribute attribute-id="cmsPreviewToken"/>
+                <attribute attribute-id="cmsPersonalizeEndpoint"/>
+                <attribute attribute-id="cmsBranch"/>
+                <attribute attribute-id="cmsPersonalizeProjectUID"/>
+                <attribute attribute-id="livePreviewUtilsURL"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+</metadata>

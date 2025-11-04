@@ -1,0 +1,5 @@
+node_modules/
+cartridges/int_contentstack/cartridge/scripts/lib/*.js
+cartridges/int_contentstack/cartridge/scripts/services/*.js
+cartridges/int_contentstack/cartridge/static/default/js/*.js
+Makefile.js

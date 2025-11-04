@@ -1,0 +1,9 @@
+<ismodule template="/components/content/contentAsset"
+    name="contentasset"
+    attribute="aid"
+/>
+
+<ismodule template="content/components/common/anchor"
+    name="anchor"
+    attribute="link"
+/>

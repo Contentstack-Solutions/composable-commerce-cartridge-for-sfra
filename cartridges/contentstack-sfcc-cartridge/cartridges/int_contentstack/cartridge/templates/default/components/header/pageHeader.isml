@@ -1,0 +1,73 @@
+<style>
+    .promotion-bar p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+</style>
+<header>
+    <isinclude template="/components/header/skipNav" />
+    <isset name="cmsUtils" value="${pdict.cmsUtils}" scope="page" />
+    <isif condition = "${pdict.cmsHeader == null || (pdict.cmsHeader && pdict.cmsHeader.promotional_bar_configuration && pdict.cmsHeader.promotional_bar_configuration.configuration != 'hide')}">
+        <div class="header-banner slide-up" ${cmsUtils.cslp(pdict.cmsHeader, 'promotional_bar_configuration')}>
+            <div class="container">
+                <div class="d-flex justify-content-between">
+                    <isinclude template="components/header/promoBar" />
+                    <div class="close-button">
+                        <button type="button" class="close" aria-label="${Resource.msg('label.header.banner.close', 'common', null)}">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </isif>
+    <nav role="navigation">
+        <div class="header container">
+            <div class="row">
+                <div class="col-12">
+                <div class="header-wrapper">
+                    <div class="navbar-header brand" ${cmsUtils.cslp(pdict.cmsHeader, 'logo')}>
+                        <a class="logo-home" href="${URLUtils.url('Home-Show')}" title="${ Resource.msgf('global.homepage.tooltip', 'common', null, Resource.msg('global.storename', 'common', null), Resource.msg('global.home', 'common', null)) }">
+                            <isif condition="${pdict.cmsHeader && pdict.cmsHeader.logo && pdict.cmsHeader.logo.url}">
+                                <img src="${pdict.cmsHeader.logo.url}" alt="${pdict.cmsHeader.logo.title}" />
+                            <iselse/>
+                                <img class="hidden-md-down" src="${URLUtils.staticURL('/images/logo.svg')}" alt="${Resource.msg('global.storename', 'common', null)}" />
+                                <img class="d-lg-none" src="${URLUtils.staticURL('/images/logo-small.svg')}" alt="${Resource.msg('global.storename', 'common', null)}" />
+                            </isif>
+                        </a>
+                    </div>
+                    <div class="navbar-header">
+                        <div class="pull-left">
+                            <button class="navbar-toggler d-md-none" type="button" aria-controls="sg-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">&#9776;</button>
+                        </div>
+                        <div class="pull-right">
+                            <div class="search hidden-sm-down">
+                                <isinclude template="components/header/search" />
+                            </div>
+                            <div class="hidden-sm-down">
+                                <isinclude url="${URLUtils.url('Account-Header')}" />
+                            </div>
+                            <div class="minicart" data-action-url="${URLUtils.url('Cart-MiniCartShow')}">
+                                <isinclude url="${URLUtils.url('Cart-MiniCart')}" />
+                            </div>
+                             <div class="hidden-sm-down">
+                                <isinclude url="${URLUtils.url('Page-Locale')}" />
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-menu navbar-toggleable-sm menu-toggleable-left multilevel-dropdown d-none d-md-block" id="sg-navbar-collapse">
+            <div class="container">
+                <div class="row">
+                    <isinclude url="${URLUtils.url('Page-IncludeHeaderMenu')}"/>
+                </div>
+            </div>
+        </div>
+        <div class="search-mobile d-md-none">
+            <isinclude template="components/header/search" />
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences xmlns="http://www.demandware.com/xml/impex/preferences/2007-03-31">
+    <custom-preferences>
+        <all-instances/>
+        <development>
+            <preference preference-id="cmsAccessToken">cs22dbebe9b0b906d3cc3171bf</preference>
+            <preference preference-id="cmsApiEndpoint">https://cdn.contentstack.io</preference>
+            <preference preference-id="cmsApiKey">bltf5ff9287ec50945c</preference>
+            <preference preference-id="cmsBranch">main</preference>
+            <preference preference-id="cmsEnvironment">production</preference>
+            <preference preference-id="cmsPersonalizeEndpoint">https://personalize-edge.contentstack.com</preference>
+            <preference preference-id="cmsEdgeApiEndpoint">EuTGl+sNW4OVpR3D06aduYkL63joO3KQ2LABvcWhJjM4nER/Cx5XPC/7iHve+CNELioVjfY6eoKYg1+upuDfFz9AdbHi7uT6TmOkgtHHO2w=</preference>
+            <preference preference-id="cmsPersonalizeProjectUID">68bae7d8fda2974a7c25f4f9</preference>
+            <preference preference-id="cmsPreviewApiEndpoint">https://rest-preview.contentstack.com</preference>
+            <preference preference-id="cmsPreviewToken">cs0f5841ed0b2beebff3db79c7</preference>
+            <preference preference-id="livePreviewUtilsURL">https://esm.sh/@contentstack/live-preview-utils@4.0.1</preference>
+        </development>
+        <staging/>
+        <production/>
+    </custom-preferences>
+</preferences>
+

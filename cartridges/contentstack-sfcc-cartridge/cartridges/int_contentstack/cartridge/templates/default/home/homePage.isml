@@ -1,0 +1,16 @@
+<isdecorate template="common/layout/page">
+
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/productTile.js');
+        assets.addCss('/css/homePage.css');
+    </isscript>
+    <isset name="cmsData" value="${pdict.cmsData}" scope="page" />
+    <isset name="cmsUtils" value="${pdict.cmsUtils}" scope="page" />
+    <isset name="cmsHelper" value="${pdict.cmsHelper}" scope="page" />
+    <isif condition="${cmsData == null}">
+        <isinclude template="home/fallbackHomePage" />
+    <iselse/>
+        <isinclude template="pages/global-modular-blocks" />
+    </isif>
+</isdecorate>

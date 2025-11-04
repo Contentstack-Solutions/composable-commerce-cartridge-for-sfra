@@ -1,0 +1,22 @@
+<!-- Content Slot : ${block.slot} -->
+<div ${cmsUtils.cslp(block, 'slot')}>
+    <isif condition="${block.slot == 'home-categories-m'}">
+        <div class="container home-categories homepage">
+            <div class="row home-main-categories no-gutters">
+                <isslot id="home-categories-m" description="Categories slots on the home page." context="global" />
+            </div>
+        </div>
+    </isif>
+    <isif condition="${block.slot == 'home-products-m'}">
+        <div class="container home-product-tiles homepage">
+            <div class="hp-product-grid" itemtype="http://schema.org/SomeProducts" itemid="#product">
+                <isslot id="home-products-m" description="Product tiles on the home page." context="global" />
+            </div>
+        </div>
+    </isif>
+    <isif condition="${block.slot == 'home-product-set-m'}">
+        <div class="homepage shop-the-style">
+            <isslot id="home-product-set-m" description="Link to a Product Set." context="global" />
+        </div>
+    </isif>
+</div>

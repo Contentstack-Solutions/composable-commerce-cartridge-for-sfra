@@ -1,0 +1,22 @@
+
+<script defer type="text/javascript" src="${URLUtils.staticURL('/js/main.js')}"></script>
+<isloop items="${ require('*/cartridge/scripts/assets.js').scripts }" var="script">
+    <isif condition="${script.integrity != null}">
+        <script defer type="text/javascript" integrity="${script.integrity}" crossorigin="anonymous" src="${script.src}"></script>
+    <iselse>
+        <script defer type="text/javascript" src="${script.src}"></script>
+    </isif>
+</isloop>
+
+<isif condition="${pdict.isLivePreview}">
+    <script type='module'>
+        import ContentstackLivePreview from '${pdict.cmsHelper.livePreviewUtilsURL}';
+        ContentstackLivePreview.init({
+            mode: 'builder',
+            stackDetails: {
+                apiKey: '${pdict.cmsHelper.api_key}',
+                environment: '${pdict.cmsHelper.environment}'
+            }
+        });
+    </script>
+</isif>

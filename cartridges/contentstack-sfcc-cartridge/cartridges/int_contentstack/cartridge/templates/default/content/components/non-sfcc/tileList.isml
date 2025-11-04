@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="hp-product-grid" itemtype="http://schema.org/SomeProducts" itemid="#product">
+        <div class="homepage-product-listing row" ${cmsUtils.cslp(block, 'tiles')}>
+            <isloop items="${block.tiles}" var="tile" status="loopState">
+                <div class="col-6 col-sm-4" ${cmsUtils.cslp(block.products, 'data', loopState.index)}>
+                    <div class="product">
+                        <div class="product-tile">
+                            <div class="image-container" ${cmsUtils.cslp(tile, 'image')}>
+                                <a href="${tile.call_to_action.link.href}"
+                                    title="${tile.call_to_action.link.title ? tile.call_to_action.link.title : tile.title}"
+                                    target="${tile.call_to_action.open_in_new_window ? '_blank' : '_self'}"
+                                    {cmsUtils.cslp(tile, 'call_to_action' )}>
+                                    <isif condition="${tile.image && tile.image.url}">
+                                        <img class="tile-image" src="${tile.image.url}" alt="${tile.image.title}"
+                                            title="${tile.image.title}" />
+                                    </isif>
+                                </a>
+                            </div>
+                            <div class="tile-body">
+                                <div class="pdp-link">
+                                    <a href="${tile.call_to_action.link.href}"
+                                        title="${tile.call_to_action.link.title ? tile.call_to_action.link.title : tile.title}"
+                                        target="${tile.call_to_action.open_in_new_window ? '_blank' : '_self'}"
+                                        {cmsUtils.cslp(tile, 'call_to_action' )}>
+                                        <div ${cmsUtils.cslp(tile, 'title')}>
+                                            ${tile.title}
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </isloop>
+        </div>
+    </div>
+</div>

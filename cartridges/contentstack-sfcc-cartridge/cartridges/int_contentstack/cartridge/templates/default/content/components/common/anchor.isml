@@ -1,0 +1,15 @@
+<isset name="data" value="${pdict.link}" scope="page"/>
+<isif condition="${!empty(data.link.href)}">
+    <isset name="className" value="${''}" scope="page"/>
+    <isif condition="${data.type === 'primary' || data.cta_type === 'secondary'}">
+        <isset name="className" value="${'class=\"btn btn-' + data.type.toLowerCase() + '\"' : ''}" scope="page"/>
+    <iselseif condition="${data.type === 'icon' && !empty(data.icon)}" />
+        <isset name="className" value="${'class=\"fa ' + data.icon + '\"'}" scope="page"/>
+    </isif>
+    <a href="${data.link.href}" <isprint value="${className}" encoding="off"/> title="${data.link.title}" target="${data.open_in_new_window ? '_blank' : '_self'}">
+        <isif condition="${data.type === 'link' && !empty(data.icon)}">
+            <i class="fa ${data.icon}" aria-hidden="true"></i>
+        </isif>
+        ${data.type != 'icon' ? data.link.title : ''}
+    </a>
+</isif>

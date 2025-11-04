@@ -1,0 +1,19 @@
+<isif condition="${pdict.cmsHeader && pdict.cmsHeader.promotional_bar_configuration}">
+    <div class="content">
+        <div class="promotion-bar">
+            <isif condition="${pdict.cmsHeader.promotional_bar_configuration.configuration == 'sfcc'}">
+                <isslot id="header-banner-m" description="Slot above the site header" context="global" />
+            </isif>
+            <isif condition="${pdict.cmsHeader.promotional_bar_configuration.configuration == 'page-specific'}">
+                <div ${cmsUtils.cslp(pdict.cmsHeader.promotional_bar_configuration, 'announcement')}>
+                    <isprint value="${cmsHelper.rteToHtml(pdict.cmsHeader.promotional_bar_configuration.announcement)}" encoding="off" />
+                </div>
+            </isif>
+            <isif condition="${pdict.cmsHeader.promotional_bar_configuration.configuration == 'existing' && pdict.cmsHeader.promotional_bar_configuration.existing_promotional_bar.length > 0}">
+                <div ${cmsUtils.cslp(pdict.cmsHeader.promotional_bar_configuration.existing_promotional_bar[0].promotional_bar, 'announcement')}>
+                    <isprint value="${cmsHelper.rteToHtml(pdict.cmsHeader.promotional_bar_configuration.existing_promotional_bar[0].promotional_bar.announcement)}" encoding="off" />
+                </div>
+            </isif>
+        </div>
+    </div>
+</isif>
