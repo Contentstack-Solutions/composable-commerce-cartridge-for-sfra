@@ -1,0 +1,9 @@
+
+<style>
+    .main-callout {
+        background-image: url(${block.image.url});
+    }
+</style>
+<div class="hero main-callout" ${cmsUtils.cslp(block, 'image')}>
+    <h1 class="page-title" ${cmsUtils.cslp(block, 'title')}>${block.title}</h1>
+</div>

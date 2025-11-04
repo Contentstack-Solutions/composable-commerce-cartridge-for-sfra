@@ -1,0 +1,36 @@
+<isif condition="${pdict && pdict.cmsData != null}">
+    <isif condition="${cmsData && (cmsData.use_modular_blocks == null || cmsData.use_modular_blocks == true)}">
+        <isif condition="${cmsData && cmsData.components  && cmsData.components.length > 0}">
+            <div ${cmsUtils.cslp(cmsData, 'components')} class="${pdict.isLivePreview == true && cmsData.components.length <= 0  ? 'visual-builder__empty-block-parent' : ''}">
+                <isloop items="${cmsData.components}" var="element" status="elementStatus">
+                    <div ${cmsUtils.cslp(cmsData, 'components', elementStatus.index)}>
+                        <isset name="blockId" value="${Object.keys(element)[0]}" scope="page" />
+                        <isset name="block" value="${element[blockId]}" scope="page" />
+                        <isif condition="${blockId == 'banner'}">
+                            <isinclude template="content/components/banner/banner" />
+                        <iselseif condition="${blockId == 'category_list'}"/>
+                            <isinclude template="content/components/categoryTiles" />
+                        <iselseif condition="${blockId == 'product_list'}"/>
+                            <isinclude template="content/components/productList" />
+                        <iselseif condition="${blockId == 'newsletter'}"/>
+                            <isinclude template="content/components/emailSignup" />
+                        <iselseif condition="${blockId == 'general_content'}"/>
+                            <isinclude template="content/components/generalContent" />
+                        <iselseif condition="${blockId == 'tile_list'}"/>
+                            <isinclude template="content/components/non-sfcc/tileList" />
+                        <iselseif condition="${blockId == 'card_list'}"/>
+                            <isinclude template="content/components/non-sfcc/cardList" />
+                        </isif>
+                    </div>
+                </isloop>
+            </div>
+        <iselseif condition="${pdict.isLivePreview == true}">
+            <div class="visual-builder__empty-block-parent" ${cmsUtils.cslp(cmsData, 'components')}>
+            </div>
+        </isif>
+    <iselse>
+        <isprint value="${cmsData.body_isml}" encoding="off" />
+    </isif>
+</isif>
+
+

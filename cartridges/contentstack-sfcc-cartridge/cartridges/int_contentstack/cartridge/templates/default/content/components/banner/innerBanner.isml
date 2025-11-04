@@ -1,0 +1,33 @@
+
+<isset name="ctaUrl" value="" scope="page" />
+<isif condition="${!empty(banner.cta) && !empty(banner.cta.link) && !empty(banner.cta.link.href)}">
+    <isset name="ctaUrl" value="${banner.cta.link.href}" scope="page" />
+</isif>
+<isif condition="${!empty(banner)}">
+    <style>
+        .hero {
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <isset name="image" value="" scope="page" />
+    <isif condition="${!empty(banner.image)}">
+        <isset name="image" value="${'style="background-image: url(' + banner.image.url + ');"'}" scope="page" />
+    </isif>
+    <div class="homepage banner-${banner.image.uid}" ${cmsUtils.cslp(banner, 'image')}>
+        <div class="hero ${!empty(banner.slant) ? banner.slant : ''}" <isprint value="${image}" encoding="off" />>
+            <isif condition="${!empty(ctaUrl)}">
+                <a href="${ctaUrl}" title="${!empty(banner.cta.link.title) ? banner.cta.link.title : ''}"
+                    target="${banner.cta.open_in_new_window ? '_blank' : ''}" data-event-tracking="${cmsData.$exp != ''}" data-experiences="${cmsData.$exp || ''}" data-event-key="${banner.cta.personalization_event_key || 'CONVERSION'}" data-tracking-url="${URLUtils.url('Contentstack-TrackEvent')}">
+                    <h1 class="page-title" ${cmsUtils.cslp(banner, 'title')}>
+                        ${banner.title}
+                    </h1>
+                </a>
+            <iselse/>
+                <h1 class="page-title" ${cmsUtils.cslp(banner, 'title')}>
+                    ${banner.title}
+                </h1>
+            </isif>
+        </div>
+    </div>
+</isif>

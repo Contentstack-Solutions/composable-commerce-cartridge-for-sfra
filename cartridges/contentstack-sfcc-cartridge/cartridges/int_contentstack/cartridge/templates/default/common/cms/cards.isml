@@ -1,0 +1,18 @@
+
+<isset name="widthColumns" value="${Math.floor(12 / block.card.length)}" scope="page" />
+
+<isloop items="${block.card}" var="card" status="cardStatus">
+    <div class="col-sm-12 col-md-${widthColumns.toFixed(0)} card card-padding" ${cmsUtils.cslp(block, 'card', cardStatus.index)}>
+        <h3 class="card-title" ${cmsUtils.cslp(card, 'title')}>${card.title}</h3>
+        <p class="card-description" ${cmsUtils.cslp(card, 'description')}>
+           <isprint value="${cmsHelper.rteToHtml(card.description)}" encoding="off" />
+        </p>
+        <div ${cmsUtils.cslp(card, 'call_to_action')}>
+            <isloop items="${card.call_to_action}" var="cta" status="ctaStatus">
+                <div ${cmsUtils.cslp(cta, 'link')}>
+                    <a href="/link1" class="card-cta-link" ${cmsUtils.cslp(cta.link, 'title')}>${cta.link.title}</a>
+                </div>
+            </isloop>
+        </div>
+    </div>
+</isloop>

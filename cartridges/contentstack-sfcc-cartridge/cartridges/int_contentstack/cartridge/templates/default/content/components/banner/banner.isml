@@ -1,0 +1,13 @@
+<div>
+    <isif condition="${block.configuration == 'page-specific'}">
+        <isset name="banner" value="${block.inline_banner}" scope="page" />
+        <isinclude template="content/components/banner/innerBanner" />
+    </isif>
+
+    <isif condition="${block.configuration == 'existing'}">
+        <isif condition="${block.existing_banner && block.existing_banner.length > 0}">
+            <isset name="banner" value="${block.existing_banner[0].banner}" scope="page" />
+            <isinclude template="content/components/banner/innerBanner" />
+        </isif>
+    </isif>
+</div>

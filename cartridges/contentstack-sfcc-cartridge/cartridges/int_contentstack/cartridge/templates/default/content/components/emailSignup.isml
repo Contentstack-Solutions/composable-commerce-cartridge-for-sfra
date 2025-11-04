@@ -1,0 +1,46 @@
+<div class="home-email-signup">
+    <isif condition="${block.configuration == 'page-specific'}">
+        <isset name="newsletter_cmsdata" value="${block.inline_newsletter}" scope="page" />
+    </isif>
+    <isif condition="${block.configuration == 'existing' && block.existing_newsletter.length > 0}">
+        <isset name="newsletter_cmsdata" value="${block.existing_newsletter[0].newsletter}" scope="page" />
+    </isif>
+    <isset name="isSFCC" value="${block.configuration == 'sfcc' ? true : false}" scope="page" />
+    <isset name="placeholder_text" value="${!isSFCC ? newsletter_cmsdata.placeholder : Resource.msg('placeholdertext.form.emailsignup', 'homePage', null)}" scope="page" />
+
+    <isset name="button_text" value="${!isSFCC ? newsletter_cmsdata.button_label : Resource.msg('button.form.emailsignup', 'homePage', null)}" scope="page" />
+
+    <isset name="newsletter_html"
+        value="${isSFCC ? Resource.msg('description.form.emailsignup', 'homePage', null) : cmsHelper.rteToHtml(newsletter_cmsdata.text)}"
+        scope="page" />
+
+    <div class="container">
+        <form role="form" class="email-signup-form">
+            <div class="row email-signup-wrapper">
+                <div class="col-sm-5 email-wrapper">
+                    <div class="input-group">
+                        <label for="hpEmailSignUp" class="sr-only">
+                            ${Resource.msg('label.form.emailsignup', 'homePage', null)}
+                        </label>
+                        <input type="email" class="form-control" id="hpEmailSignUp" name="hpEmailSignUp"
+                            placeholder="${placeholder_text}" aria-label="${placeholder_text}"
+                            ${!isSFCC && cmsUtils.cslp(newsletter_cmsdata, 'placeholder')} required />
+                        <span class="input-group-append">
+                            <button type="submit" class="btn btn-primary subscribe-email"
+                                data-href="${URLUtils.url('EmailSubscribe-Subscribe')}"
+                                ${!isSFCC && cmsUtils.cslp(newsletter_cmsdata, 'button_label')}>
+                                ${button_text}
+                            </button>
+                            <i class="fa fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-7 email-description" ${!isSFCC && cmsUtils.cslp(newsletter_cmsdata, 'text')}>
+                    <isif condition="${!empty(newsletter_html)}">
+                        <isprint value="${newsletter_html}" encoding="off" />
+                    </isif>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<isif condition="${slotcontent}">
+    <hr />
+
+    <div class="recommendations">
+        <div class="row">
+            <isset name="end" value="${2}" scope="page" />
+            <isinclude template="components/products" />
+        </div>
+    </div>
+</isif>

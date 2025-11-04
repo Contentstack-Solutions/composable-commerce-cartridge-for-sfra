@@ -1,0 +1,95 @@
+<isinclude template="components/modules" sf-toolkit="off" />
+<isset name="cmsUtils" value="${pdict.cmsUtils}" scope="page" />
+<footer id="footercontent">
+    <div class="container">
+     <hr class="footer-divider hidden-sm-up" id="footer-divider" />
+        <div class="footer-container row">
+            <div class="footer-item col-sm-3 store" ${cmsUtils.cslp(pdict.cmsFooter, 'locate_store')}>
+                <isif
+                    condition="${!empty(pdict.cmsFooter) && pdict.cmsFooter.locate_store && ((pdict.cmsFooter.locate_store.call_to_action.link.href &&
+                               pdict.cmsFooter.locate_store.call_to_action.link.title) || cmsUtils.isJsonRteEmpty(pdict.cmsFooter
+                               .locate_store.copy))}">
+                    <a href="${pdict.cmsFooter.locate_store.call_to_action.link.href}" class="menu-footer locate-store">
+                        <h2>${pdict.cmsFooter.locate_store.call_to_action.link.title}</h2>
+                    </a>
+                    <span class="content" ${cmsUtils.cslp(pdict.cmsFooter.locate_store, 'copy')}>
+                        <isprint value="${cmsHelper.rteToHtml(pdict.cmsFooter.locate_store.copy)}" encoding="off" />
+                    </span>
+                <iselse/>
+                    <iscontentasset aid="footer-locate-store" />
+                </isif>
+            </div>
+            <div class="col-sm-9">
+                <div class="row" ${cmsUtils.cslp(pdict.cmsFooter, 'link_sections')}>
+                    <isif
+                        condition="${!empty(pdict.cmsFooter) && pdict.cmsFooter.link_sections && pdict.cmsFooter.link_sections.length > 0}">
+                        <isset name="columns" value="${pdict.cmsFooter.link_sections}" scope="page" />
+                        <isset name="columnClass" value="${(12 / (columns.length > 4 ? 4 : columns.length)).toFixed()}" scope="page" />
+                        <isloop items="${columns}" var="column" status="loopState">
+                            <div class="footer-item col-sm-${columnClass} collapsible-xs" ${cmsUtils.cslp(pdict.cmsFooter, 'link_sections', loopState.index)}>
+                                <div>
+                                    <button class="title btn text-left btn-block d-sm-none" aria-expanded="false"
+                                        aria-controls="collapsible-account">${column.title}</button>
+                                    <h2 class="title d-none d-sm-block">${column.title}</h2>
+                                </div>
+                                <ul id="collapsible-account" class="menu-footer content">
+                                    <isloop items="${column.link}" var="footerCTA">
+                                        <li>
+                                            <isanchor link="${footerCTA}" />
+                                        </li>
+                                    </isloop>
+                                </ul>
+                            </div>
+                        </isloop>
+                    <iselse/>
+                        <div class="footer-item col-sm-4 collapsible-xs">
+                            <iscontentasset aid="footer-account" />
+                        </div>
+                        <div class="footer-item col-sm-4 collapsible-xs">
+                            <iscontentasset aid="footer-support" />
+                        </div>
+                        <div class="footer-item col-sm-4 collapsible-xs">
+                            <iscontentasset aid="footer-about" />
+                        </div>
+                    </isif>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-divider hidden-xs-down" id="footer-divider" />
+        <div class="row">
+            <div class="col-lg-4 col-sm-5 push-sm-7 push-lg-8 social">
+                <isif
+                    condition="${!empty(pdict.cmsFooter) && pdict.cmsFooter.social_links && pdict.cmsFooter.social_links.link.length > 0}">
+                    <ul class="social-links" ${cmsUtils.cslp(pdict.cmsFooter, 'social_links')}>
+                        <isloop items="${pdict.cmsFooter.social_links.link}" var="socialLink">
+                            <li>
+                                <isanchor link="${socialLink}" />
+                            </li>
+                        </isloop>
+                    </ul>
+                <iselse/>
+                    <isslot id="footer-column-m" description="Content in column 1 of the Footer" context="global" />
+                </isif>
+                <button class="back-to-top" title="${Resource.msg('button.back_to_top', 'common', null)}"
+                    aria-label="${Resource.msg('button.back_to_top', 'common', null)}">
+                    <span class="fa-stack fa-lg" aria-hidden="true">
+                        <i class="fa fa-circle fa-inverse fa-stack-2x"></i>
+                        <i class="fa fa-arrow-up fa-stack-1x"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="col-lg-6 col-sm-7 pull-sm-5 pull-lg-4 copyright-notice"
+                ${cmsUtils.cslp(pdict.cmsFooter, 'copyright')}>
+                <isif condition="${!empty(pdict.cmsFooter) && pdict.cmsFooter.copyright}">
+                    <div class="copyright" ${cmsUtils.cslp(pdict.cmsFooter, 'copyright')}>
+                        <isprint value="${cmsHelper.rteToHtml(pdict.cmsFooter.copyright)}" encoding="off" />
+                    </div>
+                <iselse/>
+                    <iscontentasset aid="footer-copy" />
+                </isif>
+            </div>
+        </div>
+    </div>
+    <isslot id="footer-copyright" description="Slot to provide a copyright notice" context="global" />
+</footer>
