@@ -1,0 +1,14 @@
+node_modules/
+.DS_Store
+
+.vscode/
+cartridges/app_storefront_base
+cartridges/bm_app_storefront_base
+cartridges/modules
+cartridges/dw.json
+
+
+cartridges/contentstack-sfcc-cartridge/metadata.zip
+
+cartridges/.DS_Store
+cartridges/contentstack-sfcc-cartridge/.DS_Store
