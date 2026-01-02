@@ -36,7 +36,11 @@
         "uploadCartridge": "sgmf-scripts --uploadCartridge app_storefront_base && sgmf-scripts --uploadCartridge modules && sgmf-scripts --uploadCartridge bm_app_storefront_base",
         "watch": "sgmf-scripts --watch",
         "watch:static": "sgmf-scripts --watch static",
-        "release": "node bin/Makefile release --"
+        "release": "node bin/Makefile release --",
+        "get-cartridges": "git submodule add -b main https://github.com/Contentstack-Solutions/sfcc-private-cartridges.git content && cp -a content/. cartridges/ && npm run clean-submodule",
+        "clean-submodule": "git submodule deinit -f content && rm -rf .git/modules/content && git rm -f content",
+        "cartridge-install": "npm install && cd cartridges && npm install && cd ../",
+        "cartridge-build": "npm run build && cd cartridges && npm run build && cd ../"
     },
     "repository": {
         "type": "git",
